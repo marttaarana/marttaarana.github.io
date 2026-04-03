@@ -1,29 +1,148 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marta Arana · Social Data Analysis 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:  #E63946;
+      --dark: #1A1A2E;
+      --mid:  #457B9D;
+      --light: #FAFAF8;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--light);
+      color: #2c2c2c;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    header .kicker {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    header p {
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 60px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .card {
+      border: 1px solid #e0ddd8;
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+      background: #fff;
+      transition: box-shadow 0.15s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .card .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card a.btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-family: 'Georgia', serif;
+      transition: background 0.15s;
+    }
+    .card a.btn:hover { background: #c1121f; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: #aaa;
+      border-top: 1px solid #e0ddd8;
+    }
+    footer a { color: var(--mid); }
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;My Data Viz Site&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Hello World!&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;This site will soon contain interactive data visualizations about crime in San Francisco.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;li&gt;&lt;a href="visualizations/sf_map.html"&gt;Folium map&lt;/a&gt;&lt;/li&gt;</span></p>
+
+<header>
+  <p class="kicker">DTU · Social Data Analysis 2026</p>
+  <h1>Marta Arana</h1>
+  <p>Data stories, visualizations, and analysis</p>
+</header>
+
+<main>
+  <p class="section-label">Assignments</p>
+
+  <div class="card">
+    <p class="tag">Assignment 2 · April 2026</p>
+    <h2>Smash and Grab: San Francisco's Decade-Long Larceny Crisis</h2>
+    <p>
+      A magazine-style data story exploring why larceny/theft in SF nearly doubled over 15 years
+      while other crimes held flat — and what the data can and can't tell us about why.
+    </p>
+    <a href="assignment2.html" class="btn">Read the story →</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Social Data Analysis 2026 · DTU · <a href="https://github.com/marttaarana/marttaarana.github.io">GitHub</a></p>
+</footer>
+
 </body>
 </html>
