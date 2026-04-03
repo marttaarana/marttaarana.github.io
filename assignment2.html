@@ -6,7 +6,7 @@
   <title>Proposition 47 — The Unintended Consequences</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
     /* ── Variables ─────────────────────────────────── */
@@ -222,14 +222,19 @@
     /* ── Pull quote ────────────────────────────────── */
     .pull-quote {
       border-top: var(--rule); border-bottom: var(--rule);
-      padding: 22px 0; margin: 40px 0; text-align: center;
+      padding: 28px 0; margin: 44px 0; text-align: center;
     }
 
     .pull-quote p {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
-      font-style: italic; line-height: 1.3;
+      font-family: 'Bebas Neue', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-style: normal; line-height: 1.2;
       color: var(--black); margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .pull-quote p em {
+      color: var(--red); font-style: normal;
     }
 
     /* ── Section divider ───────────────────────────── */
@@ -250,31 +255,46 @@
       max-width: 520px; margin: 14px auto 0;
     }
 
-    /* ── Stats row ─────────────────────────────────── */
+    /* ── Stats row — aggressive newspaper style ────── */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0; margin: 40px 0;
-      border: var(--rule);
+      gap: 0; margin: 40px -28px;
+      background: var(--black);
     }
 
     .stat {
-      padding: 22px 20px; text-align: center;
-      border-right: var(--rule);
+      padding: 32px 24px; text-align: center;
+      border-right: 1px solid #2a2a2a;
+      position: relative;
     }
     .stat:last-child { border-right: none; }
 
+    .stat::before {
+      content: ''; position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 32px; height: 3px; background: var(--red);
+    }
+
     .stat .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem; font-weight: 900;
-      line-height: 1; color: var(--red);
+      font-family: 'Bebas Neue', 'Playfair Display', serif;
+      font-size: 4rem; line-height: 1;
+      color: var(--red); display: block;
+      letter-spacing: 0.02em;
     }
 
     .stat .label {
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.8rem; color: var(--gray);
+      font-size: 0.72rem; color: #777;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-top: 8px; line-height: 1.5; display: block;
+    }
+
+    .stat .sublabel {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.68rem; color: #444;
       text-transform: uppercase; letter-spacing: 0.08em;
-      margin-top: 6px; line-height: 1.4;
+      margin-top: 2px; display: block;
     }
 
     /* ── Figures ───────────────────────────────────── */
@@ -333,6 +353,74 @@
     }
     .references a { color: var(--blue); }
 
+    /* ── SF Map strip ──────────────────────────────── */
+    .sf-map-strip {
+      margin: 64px -28px 0;
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sf-map-strip iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+      filter: grayscale(100%) contrast(0.85) brightness(0.9);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .sf-map-strip .map-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(245,242,237,0.3) 0%,
+        rgba(245,242,237,0) 30%,
+        rgba(245,242,237,0) 70%,
+        rgba(245,242,237,0.95) 100%);
+      pointer-events: none;
+    }
+    .sf-map-strip .map-label {
+      position: absolute; bottom: 14px; right: 20px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #aaa;
+    }
+
+    /* ── Contributors ───────────────────────────────── */
+    .contributors {
+      margin-top: 56px;
+      border-top: var(--rule);
+      padding-top: 24px;
+    }
+    .contributors h3 {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .contrib-card {
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .contrib-card .contrib-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--black); margin-bottom: 2px;
+    }
+    .contrib-card .contrib-id {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 10px; letter-spacing: 0.1em;
+      color: var(--red); text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .contrib-card .contrib-role {
+      font-size: 0.85rem; color: #555;
+      line-height: 1.55;
+    }
+
     /* ── Footer ────────────────────────────────────── */
     footer {
       background: var(--black); color: #555;
@@ -346,11 +434,12 @@
 
     /* ── Responsive ────────────────────────────────── */
     @media (max-width: 600px) {
-      .stats { grid-template-columns: 1fr; }
-      .stat { border-right: none; border-bottom: var(--rule); }
+      .stats { grid-template-columns: 1fr; margin: 40px 0; }
+      .stat { border-right: none; border-bottom: 1px solid #2a2a2a; }
       .stat:last-child { border-bottom: none; }
       .clippings { grid-template-columns: 1fr; }
       .pivot { margin: 64px -28px; }
+      .sf-map-strip { margin: 64px 0 0; }
     }
   </style>
 </head>
@@ -377,7 +466,7 @@
       else moved in to fill the gap.
     </p>
     <div class="hero-meta">
-      <span>Marta Arana</span>
+      <span>Esben Kok · Marta Arana · Sergi Lupon</span>
       <span>DTU · Social Data Analysis</span>
       <span>April 2026</span>
     </div>
@@ -489,7 +578,7 @@
   </p>
 
   <div class="pull-quote reveal">
-    <p>"The drop in drug arrests is the law working as intended. What came next is the part nobody wanted to talk about."</p>
+    <p>The drop in drug arrests is the law working as intended.<br><em>What came next is the part nobody wanted to talk about.</em></p>
   </div>
 
   <p class="reveal">
@@ -546,16 +635,19 @@
   <!-- STATS ROW -->
   <div class="stats reveal">
     <div class="stat">
-      <div class="num">+82%</div>
-      <div class="label">Larceny increase<br>2010 → 2017</div>
+      <span class="num">+82%</span>
+      <span class="label">Larceny increase</span>
+      <span class="sublabel">2010 → 2017</span>
     </div>
     <div class="stat">
-      <div class="num">47,714</div>
-      <div class="label">Larceny incidents<br>in 2017 (peak year)</div>
+      <span class="num">47,714</span>
+      <span class="label">Larceny incidents</span>
+      <span class="sublabel">2017 peak year</span>
     </div>
     <div class="stat">
-      <div class="num">−65%</div>
-      <div class="label">Drug offenses drop<br>2008 → 2017</div>
+      <span class="num">−65%</span>
+      <span class="label">Drug offenses drop</span>
+      <span class="sublabel">2008 → 2017</span>
     </div>
   </div>
 
@@ -690,6 +782,35 @@
     reform did not eliminate crime in the neighborhoods it was most meant to help.
     It reclassified it.
   </p>
+
+  <!-- SF MAP STRIP -->
+  <div class="sf-map-strip reveal">
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-122.5247%2C37.6879%2C-122.3549%2C37.8119&layer=mapnik" title="San Francisco map"></iframe>
+    <div class="map-overlay"></div>
+    <div class="map-label">San Francisco, CA</div>
+  </div>
+
+  <!-- CONTRIBUTORS -->
+  <div class="contributors reveal">
+    <h3>Authors &amp; Contributions</h3>
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <div class="contrib-name">Esben Kok</div>
+        <div class="contrib-id">s254322</div>
+        <div class="contrib-role">Esben brought the initial instinct that Prop 47 was worth investigating — he had come across the law while reading about California prison reform and immediately saw its potential as a data story. He led the geographic analysis, identifying the substitution pattern between drug hotspots and larceny zones.</div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-name">Marta Arana</div>
+        <div class="contrib-id">s254310</div>
+        <div class="contrib-role">Marta anchored the narrative research, diving into the legislative history and news archive to build the context section. She was particularly drawn to how the law was framed as a social justice reform — and how the data complicated that framing. She also led the web design and visual storytelling.</div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-name">Sergi Lupon</div>
+        <div class="contrib-id">s254311</div>
+        <div class="contrib-role">Sergi handled the data pipeline and visualization code. When the three of us first plotted the drug and larceny trend lines together, all going in opposite directions at the same inflection point, he was the one who said: "this is the story." He built the interactive district explorer and the comparison heatmap.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- REFERENCES -->
   <div class="references reveal">
