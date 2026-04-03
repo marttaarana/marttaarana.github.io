@@ -39,12 +39,43 @@
       transition: width 0.1s linear;
     }
 
-    /* ── Scroll-reveal ─────────────────────────────── */
+    /* ── Scroll animations ─────────────────────────── */
     .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(.22,1,.36,1),
+                  transform 0.7s cubic-bezier(.22,1,.36,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Slide from left */
+    .reveal-left {
+      opacity: 0; transform: translateX(-48px);
+      transition: opacity 0.65s cubic-bezier(.22,1,.36,1),
+                  transform 0.65s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* Slide from right */
+    .reveal-right {
+      opacity: 0; transform: translateX(48px);
+      transition: opacity 0.65s cubic-bezier(.22,1,.36,1),
+                  transform 0.65s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Scale pop */
+    .reveal-pop {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.55s cubic-bezier(.34,1.56,.64,1),
+                  transform 0.55s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal-pop.visible { opacity: 1; transform: scale(1); }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.22s !important; }
+    .delay-3 { transition-delay: 0.34s !important; }
+    .delay-4 { transition-delay: 0.46s !important; }
 
     /* ── Top nav bar ───────────────────────────────── */
     nav {
@@ -353,36 +384,6 @@
     }
     .references a { color: var(--blue); }
 
-    /* ── SF Map strip ──────────────────────────────── */
-    .sf-map-strip {
-      margin: 64px -28px 0;
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-    }
-    .sf-map-strip iframe {
-      width: 100%; height: 100%;
-      border: none; display: block;
-      filter: grayscale(100%) contrast(0.85) brightness(0.9);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .sf-map-strip .map-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(245,242,237,0.3) 0%,
-        rgba(245,242,237,0) 30%,
-        rgba(245,242,237,0) 70%,
-        rgba(245,242,237,0.95) 100%);
-      pointer-events: none;
-    }
-    .sf-map-strip .map-label {
-      position: absolute; bottom: 14px; right: 20px;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 10px; letter-spacing: 0.18em;
-      text-transform: uppercase; color: #aaa;
-    }
-
     /* ── Contributors ───────────────────────────────── */
     .contributors {
       margin-top: 56px;
@@ -439,7 +440,6 @@
       .stat:last-child { border-bottom: none; }
       .clippings { grid-template-columns: 1fr; }
       .pivot { margin: 64px -28px; }
-      .sf-map-strip { margin: 64px 0 0; }
     }
   </style>
 </head>
@@ -500,23 +500,23 @@
   </p>
 
   <!-- NEWS CLIPPINGS -->
-  <div class="clippings reveal">
-    <div class="clip">
+  <div class="clippings">
+    <div class="clip reveal-left delay-1">
       <div class="clip-source">Los Angeles Times · 2011</div>
       <h4>"Supreme Court orders California to cut prison population by tens of thousands"</h4>
       <p>The court found unconstitutional levels of crowding — prisons running at 200% capacity — and ordered the state to act.</p>
     </div>
-    <div class="clip">
+    <div class="clip reveal delay-2">
       <div class="clip-source">SF Chronicle · 2013</div>
       <h4>"California spends $62,000 a year per prisoner — more than Harvard tuition"</h4>
       <p>Critics pointed out that the same money spent on housing, treatment, and mental health services could break cycles of recidivism.</p>
     </div>
-    <div class="clip">
+    <div class="clip reveal delay-3">
       <div class="clip-source">The Guardian · 2014</div>
       <h4>"Prop 47: A turning point in California's war on drugs — or a threat to public safety?"</h4>
       <p>Supporters argued drug addiction is a health crisis. Opponents warned of unintended consequences for property crime.</p>
     </div>
-    <div class="clip">
+    <div class="clip reveal-right delay-4">
       <div class="clip-source">PPIC · 2014</div>
       <h4>"California's drug arrest rates are among the highest in the nation"</h4>
       <p>The Public Policy Institute found Black Californians were arrested for drug possession at rates four times higher than white residents.</p>
@@ -524,7 +524,7 @@
   </div>
 
   <!-- THE LAW BOX -->
-  <div class="law-box reveal">
+  <div class="law-box reveal-left">
     <h3>California Proposition 47 — The Safe Neighborhoods and Schools Act (2014)</h3>
     <ul>
       <li>Reclassified simple possession of heroin, cocaine, methamphetamine, and other drugs from a <strong>felony</strong> to a <strong>misdemeanor</strong> — for personal use amounts only.</li>
@@ -577,7 +577,7 @@
     Prop 47 passed, roughly 4,700 people had their sentences reduced or were released early [3].
   </p>
 
-  <div class="pull-quote reveal">
+  <div class="pull-quote reveal-pop">
     <p>The drop in drug arrests is the law working as intended.<br><em>What came next is the part nobody wanted to talk about.</em></p>
   </div>
 
@@ -633,19 +633,19 @@
   </p>
 
   <!-- STATS ROW -->
-  <div class="stats reveal">
-    <div class="stat">
-      <span class="num">+82%</span>
+  <div class="stats">
+    <div class="stat reveal-pop delay-1">
+      <span class="num" data-target="82" data-prefix="+" data-suffix="%">+82%</span>
       <span class="label">Larceny increase</span>
       <span class="sublabel">2010 → 2017</span>
     </div>
-    <div class="stat">
-      <span class="num">47,714</span>
+    <div class="stat reveal-pop delay-2">
+      <span class="num" data-target="47714" data-prefix="" data-suffix="">47,714</span>
       <span class="label">Larceny incidents</span>
       <span class="sublabel">2017 peak year</span>
     </div>
-    <div class="stat">
-      <span class="num">−65%</span>
+    <div class="stat reveal-pop delay-3">
+      <span class="num" data-target="65" data-prefix="−" data-suffix="%">−65%</span>
       <span class="label">Drug offenses drop</span>
       <span class="sublabel">2008 → 2017</span>
     </div>
@@ -783,28 +783,21 @@
     It reclassified it.
   </p>
 
-  <!-- SF MAP STRIP -->
-  <div class="sf-map-strip reveal">
-    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-122.5247%2C37.6879%2C-122.3549%2C37.8119&layer=mapnik" title="San Francisco map"></iframe>
-    <div class="map-overlay"></div>
-    <div class="map-label">San Francisco, CA</div>
-  </div>
-
   <!-- CONTRIBUTORS -->
   <div class="contributors reveal">
     <h3>Authors &amp; Contributions</h3>
     <div class="contrib-grid">
-      <div class="contrib-card">
+      <div class="contrib-card reveal-left delay-1">
         <div class="contrib-name">Esben Kok</div>
         <div class="contrib-id">s254322</div>
         <div class="contrib-role">Esben brought the initial instinct that Prop 47 was worth investigating — he had come across the law while reading about California prison reform and immediately saw its potential as a data story. He led the geographic analysis, identifying the substitution pattern between drug hotspots and larceny zones.</div>
       </div>
-      <div class="contrib-card">
+      <div class="contrib-card reveal delay-2">
         <div class="contrib-name">Marta Arana</div>
         <div class="contrib-id">s254310</div>
         <div class="contrib-role">Marta anchored the narrative research, diving into the legislative history and news archive to build the context section. She was particularly drawn to how the law was framed as a social justice reform — and how the data complicated that framing. She also led the web design and visual storytelling.</div>
       </div>
-      <div class="contrib-card">
+      <div class="contrib-card reveal-right delay-3">
         <div class="contrib-name">Sergi Lupon</div>
         <div class="contrib-id">s254311</div>
         <div class="contrib-role">Sergi handled the data pipeline and visualization code. When the three of us first plotted the drug and larceny trend lines together, all going in opposite directions at the same inflection point, he was the one who said: "this is the story." He built the interactive district explorer and the comparison heatmap.</div>
@@ -862,45 +855,118 @@
   </p>
 </footer>
 
-<!-- ── SCROLL EFFECTS ────────────────────────────── -->
+<!-- ── SCROLL & ANIMATION EFFECTS ───────────────── -->
 <script>
-  // Progress bar
+  /* ── 1. Progress bar ──────────────────────────── */
   var bar = document.getElementById('progress-bar');
   window.addEventListener('scroll', function() {
-    var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    bar.style.width = scrolled + '%';
-  });
+    var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    bar.style.width = pct + '%';
+  }, { passive: true });
 
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries) {
+  /* ── 2. Universal reveal observer ────────────── */
+  var revealClasses = ['.reveal', '.reveal-left', '.reveal-right', '.reveal-pop'];
+  var allReveal = document.querySelectorAll(revealClasses.join(','));
+
+  var revealObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        revealObs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  reveals.forEach(function(el) { observer.observe(el); });
+  allReveal.forEach(function(el) { revealObs.observe(el); });
 
-  // Animated stat counters
-  var statNums = document.querySelectorAll('.stat .num');
-  var statObserver = new IntersectionObserver(function(entries) {
+  /* ── 3. Animated number counters ─────────────── */
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function animateCounter(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    var duration = 1400;
+    var start = null;
+
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = easeOutQuart(progress);
+      var current = Math.round(eased * target);
+      // Format with commas
+      el.textContent = prefix + current.toLocaleString('en-US') + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var counterObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var target = el.textContent;
-        el.style.opacity = '0';
-        setTimeout(function() {
-          el.style.transition = 'opacity 0.4s';
-          el.style.opacity = '1';
-        }, 100);
-        statObserver.unobserve(el);
+      if (entry.isIntersecting && entry.target.dataset.target) {
+        // Small delay matching the reveal-pop stagger
+        var delay = parseInt(entry.target.closest('.stat').querySelector('[data-target]') === entry.target
+          ? (entry.target.closest('.delay-1') ? 100
+             : entry.target.closest('.delay-2') ? 220
+             : 340) : 0);
+        setTimeout(function() { animateCounter(entry.target); }, delay + 300);
+        counterObs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
-  statNums.forEach(function(el) { statObserver.observe(el); });
+
+  document.querySelectorAll('.num[data-target]').forEach(function(el) {
+    counterObs.observe(el);
+  });
+
+  /* ── 4. Pivot banner: typewriter flash ────────── */
+  var pivot = document.querySelector('.pivot h2');
+  if (pivot) {
+    var pivotObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          pivot.style.transition = 'none';
+          pivot.style.opacity = '0';
+          setTimeout(function() {
+            pivot.style.transition = 'opacity 0.15s';
+            pivot.style.opacity = '1';
+            setTimeout(function() {
+              pivot.style.opacity = '0';
+              setTimeout(function() {
+                pivot.style.opacity = '1';
+              }, 120);
+            }, 120);
+          }, 200);
+          pivotObs.unobserve(pivot);
+        }
+      });
+    }, { threshold: 0.5 });
+    pivotObs.observe(pivot);
+  }
+
+  /* ── 5. Chapter number: slide-in underline ────── */
+  document.querySelectorAll('.chapter-number').forEach(function(el) {
+    el.style.display = 'inline-block';
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    var line = document.createElement('span');
+    line.style.cssText = [
+      'position:absolute', 'bottom:0', 'left:0',
+      'height:2px', 'width:0', 'background:#cc0000',
+      'transition:width 0.5s cubic-bezier(.22,1,.36,1) 0.4s'
+    ].join(';');
+    el.appendChild(line);
+
+    var chapObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          line.style.width = '100%';
+          chapObs.unobserve(el);
+        }
+      });
+    }, { threshold: 1.0 });
+    chapObs.observe(el);
+  });
 </script>
 
 </body>
